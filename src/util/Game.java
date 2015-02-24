@@ -23,7 +23,7 @@ public class Game {
 	public Game() {
 		try {
 			instance = this;
-			Display.create(new PixelFormat(8, 0, 0, 8));
+			Display.create();
 			setDisplayMode(720, 720);
 			Display.setVSyncEnabled(true);
 			Display.setResizable(true);
@@ -34,7 +34,7 @@ public class Game {
 		}
 	}
 
-	// The gameloop. Runs at 60 fps
+	
 	private void gameLoop() {
 		long lastFrame = getCurrentTime();
 		long thisFrame = getCurrentTime();
@@ -55,7 +55,7 @@ public class Game {
 				resized();
 			}
 
-			Display.sync(30);
+			Display.sync(10);
 
 			lastFrame = thisFrame;
 		}

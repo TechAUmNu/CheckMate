@@ -34,7 +34,7 @@ public class GUI extends Game {
 	@Override
 	public void init() {
 		Display.setTitle("ChessMate V0.01");
-
+		
 		board = new Board();
 		board.init();
 
@@ -53,8 +53,36 @@ public class GUI extends Game {
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 			Game.end();
 		
+		if(Keyboard.isKeyDown(Keyboard.KEY_E)){
+			System.out.println("Starting engine");
+			ChessEngine.getInstance();
+		}
 		
+		if (Keyboard.isKeyDown(Keyboard.KEY_1)){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			board.movePiece("a2a4");
+			
+		}
+
+		if (Keyboard.isKeyDown(Keyboard.KEY_2))
+			board.movePiece(ChessEngine.getInstance().move("a2a4"));
 		
+		if (Keyboard.isKeyDown(Keyboard.KEY_3)){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			board.movePiece("g1f3");
+		}
+		if (Keyboard.isKeyDown(Keyboard.KEY_4))
+			board.movePiece(ChessEngine.getInstance().move("g1f3"));
 		//We process the users interactions here
 		// if(somethingchanged){
 		// 		playerMoved = true;
@@ -62,7 +90,7 @@ public class GUI extends Game {
 		
 		
 		if(playerMoved){
-			ChessEngine.takeTurn(board);
+			
 			playerMoved = false;
 		}
 	}
