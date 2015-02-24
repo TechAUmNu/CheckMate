@@ -26,7 +26,7 @@ import util.Game;
 public class GUI extends Game {
 
 	
-	
+	ChessEngine engine;
 	Board board;
 	boolean playerMoved;
 
@@ -34,7 +34,9 @@ public class GUI extends Game {
 	@Override
 	public void init() {
 		Display.setTitle("ChessMate V0.01");
+
 		
+
 		board = new Board();
 		board.init();
 
@@ -52,6 +54,7 @@ public class GUI extends Game {
 	public void update(long elapsedTime) {
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 			Game.end();
+
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_E)){
 			System.out.println("Starting engine");
@@ -83,6 +86,7 @@ public class GUI extends Game {
 		}
 		if (Keyboard.isKeyDown(Keyboard.KEY_4))
 			board.movePiece(ChessEngine.getInstance().move("g1f3"));
+
 		//We process the users interactions here
 		// if(somethingchanged){
 		// 		playerMoved = true;

@@ -181,6 +181,7 @@ public class Board {
 		}
 
 		// movePiece(grid[2][6], grid[2][4]);
+
 	}
 
 	public void draw() {
@@ -191,8 +192,10 @@ public class Board {
 			}
 		}
 
+
 		if (testPath) {
 			showPath(grid[0][0], grid[7][7]);
+
 		}
 	}
 
@@ -202,6 +205,11 @@ public class Board {
 				grid[x][y].dispose();
 			}
 		}
+	}
+
+	public void test() {
+		testPath = true;
+		
 	}
 
 }
