@@ -1,0 +1,5 @@
+ a2a4
+java.lang.NullPointerException
+magnumchess.Main.uci(Main.java:149)
+magnumchess.Main.getCmd(Main.java:360)
+magnumchess.Main.main(Main.java:85)

@@ -19,8 +19,27 @@ public class Board {
 	// Each of the squares can be either blanksquares or pieces
 	// If a square is blank then it will have a piece that is null
 	private Square[][] grid = new Square[8][8];
+	private boolean testPath;
 
-	public void movePiece(Square from, Square to) {
+	public String movePiece(String move) {
+		String from = move.substring(0, 2);
+
+		System.out.println("From: " + from);
+		int fromColumn = from.charAt(0) - 97;
+		int fromRow = from.charAt(1) - 48;
+		fromRow = 8 - fromRow;
+
+		String to = move.substring(2, 4);
+		System.out.println("To: " + to);
+		int toColumn = to.charAt(0) - 97;
+		int toRow = to.charAt(1) - 48;
+		toRow = 8 - toRow;
+
+		movePieceSquares(grid[fromColumn][fromRow], grid[toColumn][toRow]);
+		return move;
+	}
+
+	private void movePieceSquares(Square from, Square to) {
 		to.setPiece(from.getPiece());
 		from.setPiece(null);
 	}
@@ -102,13 +121,13 @@ public class Board {
 			for (int y = 0; y < 8; y++) {
 				if ((x % 2 == 0) && (y % 2 == 0))
 					grid[x][y] = new Square(x, y, x * 100, y * 100, 100, 100,
-							true);
+							false);
 				else if ((x % 2 == 1) && (y % 2 == 1))
 					grid[x][y] = new Square(x, y, x * 100, y * 100, 100, 100,
-							true);
+							false);
 				else
 					grid[x][y] = new Square(x, y, x * 100, y * 100, 100, 100,
-							false);
+							true);
 
 			}
 		}
@@ -129,10 +148,10 @@ public class Board {
 		grid[5][0].setPiece(new Piece(PieceType.Black_Bishop));
 
 		// King
-		grid[3][0].setPiece(new Piece(PieceType.Black_King));
+		grid[4][0].setPiece(new Piece(PieceType.Black_King));
 
 		// Queen
-		grid[4][0].setPiece(new Piece(PieceType.Black_Queen));
+		grid[3][0].setPiece(new Piece(PieceType.Black_Queen));
 
 		for (int x = 0; x < 8; x++) {
 			grid[x][1].setPiece(new Piece(PieceType.Black_Pawn));
@@ -152,16 +171,16 @@ public class Board {
 		grid[5][7].setPiece(new Piece(PieceType.White_Bishop));
 
 		// King
-		grid[3][7].setPiece(new Piece(PieceType.White_King));
+		grid[4][7].setPiece(new Piece(PieceType.White_King));
 
 		// Queen
-		grid[4][7].setPiece(new Piece(PieceType.White_Queen));
+		grid[3][7].setPiece(new Piece(PieceType.White_Queen));
 
 		for (int x = 0; x < 8; x++) {
 			grid[x][6].setPiece(new Piece(PieceType.White_Pawn));
 		}
 
-		movePiece(grid[2][6], grid[2][4]);
+		// movePiece(grid[2][6], grid[2][4]);
 	}
 
 	public void draw() {
@@ -170,6 +189,10 @@ public class Board {
 			for (int y = 0; y < 8; y++) {
 				grid[x][y].draw();
 			}
+		}
+
+		if (testPath) {
+			showPath(grid[0][0], grid[7][7]);
 		}
 	}
 
