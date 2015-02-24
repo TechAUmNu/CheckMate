@@ -11,7 +11,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 
-
 public class ChessEngine {
 	static ChessEngine instance;
 	Process proc;
@@ -31,7 +30,6 @@ public class ChessEngine {
 		return instance;
 	}
 	
-
 	private void startEngine(){
 		// Run a java app in a separate system process
 		
@@ -122,7 +120,7 @@ public class ChessEngine {
 			sb.append(" ");
 			sb.append(s);
 		}
-
+		
 		sendMessage(sb.toString());
 	}
 	

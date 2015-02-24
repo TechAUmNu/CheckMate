@@ -34,7 +34,7 @@ public class Game {
 		}
 	}
 
-	// The gameloop. Runs at 60 fps
+	
 	private void gameLoop() {
 		long lastFrame = getCurrentTime();
 		long thisFrame = getCurrentTime();
@@ -55,7 +55,7 @@ public class Game {
 				resized();
 			}
 
-			Display.sync(30);
+			Display.sync(10);
 
 			lastFrame = thisFrame;
 		}

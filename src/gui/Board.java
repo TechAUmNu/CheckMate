@@ -45,8 +45,8 @@ public class Board {
 	}
 
 	// We need to be able to calculate a path so this works out how to do it
-	public void showPath(Square from, Square to) {
-		Command path = Pathfinder.path(from, to);
+	public void showPath(Square from, Square to, boolean isRook) {
+		Command path = Pathfinder.path(from, to, isRook);
 
 		// Now that we have the path we can draw it
 
@@ -179,9 +179,8 @@ public class Board {
 		for (int x = 0; x < 8; x++) {
 			grid[x][6].setPiece(new Piece(PieceType.White_Pawn));
 		}
-
+		testPath = true;
 		// movePiece(grid[2][6], grid[2][4]);
-
 	}
 
 	public void draw() {
@@ -192,24 +191,19 @@ public class Board {
 			}
 		}
 
-
 		if (testPath) {
-			showPath(grid[0][0], grid[7][7]);
-
+			showPath(grid[6][7], grid[7][5], true);
 		}
 	}
 
+
+	
 	public void dispose() {
 		for (int x = 0; x < 8; x++) {
 			for (int y = 0; y < 8; y++) {
 				grid[x][y].dispose();
 			}
 		}
-	}
-
-	public void test() {
-		testPath = true;
-		
 	}
 
 }

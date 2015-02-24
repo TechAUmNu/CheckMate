@@ -1,4 +1,4 @@
- a2a4
+ a2a4 d7d5 g1f3 b8c6 g1f3
 java.lang.NullPointerException
 magnumchess.Main.uci(Main.java:149)
 magnumchess.Main.getCmd(Main.java:360)
