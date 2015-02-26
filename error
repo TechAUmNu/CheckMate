@@ -1,0 +1,4 @@
+none
+java.lang.NullPointerException
+magnumchess.Main.getCmd(Main.java:359)
+magnumchess.Main.main(Main.java:85)

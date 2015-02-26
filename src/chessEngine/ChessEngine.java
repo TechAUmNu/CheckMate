@@ -36,13 +36,14 @@ public class ChessEngine {
 		try {
 			isInitialized = false;
 			moves = new ArrayList<String>();
-			proc = Runtime.getRuntime().exec("java -jar C:\\engines\\MagnumChess.jar");
+			//proc = Runtime.getRuntime().exec("java -jar C:\\engines\\MagnumChess.jar");
+			proc = Runtime.getRuntime().exec("Rybkav.exe");
 			in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 			InputStream err = proc.getErrorStream();
 			
 			ps = new PrintStream( new BufferedOutputStream(proc.getOutputStream()));
 			isInitialized = true;
-			waitForString("to play in UCI mode type \"uci\"");
+			//waitForString("to play in UCI mode type \"uci\"");
 			sendMessage("uci");
 			waitForString("uciok");
 			sendMessage("isready");

@@ -27,25 +27,26 @@ public class GUI extends Game {
 
 	
 	
-	Board board;
+	
 	boolean playerMoved;
-
+	
 	
 	@Override
 	public void init() {
 		Display.setTitle("ChessMate V0.01");
-		
-		board = new Board();
+		ChessEngine.getInstance();
 		board.init();
 
 		glMatrixMode(GL_PROJECTION);
-		glOrtho(0, 800, 800, 0, 1, -1);
+		glOrtho(0, board.squareSize * 8, board.squareSize * 8, 0, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 
 		glClearColor(1f, 1f, 1f, 0f);
 		glShadeModel(GL_SMOOTH);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		
 	}
 
 	@Override
@@ -53,46 +54,15 @@ public class GUI extends Game {
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 			Game.end();
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_E)){
-			System.out.println("Starting engine");
-			ChessEngine.getInstance();
-		}
-		
-		if (Keyboard.isKeyDown(Keyboard.KEY_1)){
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			board.movePiece("a2a4");
-			
-		}
-
-		if (Keyboard.isKeyDown(Keyboard.KEY_2))
-			board.movePiece(ChessEngine.getInstance().move("a2a4"));
-		
-		if (Keyboard.isKeyDown(Keyboard.KEY_3)){
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			board.movePiece("g1f3");
-		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_4))
-			board.movePiece(ChessEngine.getInstance().move("g1f3"));
-		//We process the users interactions here
-		// if(somethingchanged){
-		// 		playerMoved = true;
-		
-		
-		
+		if (Keyboard.isKeyDown(Keyboard.KEY_T) || playerMoved == false)
+			playerMoved = true;
+				
 		if(playerMoved){
-			
+			String playerMove = "";
+			board.movePiece(ChessEngine.getInstance().move(playerMove));
 			playerMoved = false;
 		}
+		
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package util;
 
+import static org.lwjgl.opengl.GL11.glViewport;
+import gui.Board;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
@@ -13,18 +16,22 @@ import org.lwjgl.opengl.PixelFormat;
  */
 public class Game {
 	// Single instance is allowed
-	private static Game instance;
+	public static Game instance;
 	// Delta time
 	private static long delta;
-
+	protected Board board;
+	private boolean resized = true;
 	/**
 	 * A simple Game
 	 */
 	public Game() {
 		try {
-			instance = this;
+			instance = this;			
 			Display.create();
-			setDisplayMode(720, 720);
+			board = new Board();
+			
+			setDisplayMode(board.squareSize * 8, board.squareSize * 8);
+			
 			Display.setVSyncEnabled(true);
 			Display.setResizable(true);
 			gameLoop();

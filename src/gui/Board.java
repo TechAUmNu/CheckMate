@@ -19,7 +19,7 @@ public class Board {
 	// Each of the squares can be either blanksquares or pieces
 	// If a square is blank then it will have a piece that is null
 	private Square[][] grid = new Square[8][8];
-	private boolean testPath;
+	public int squareSize = 100;
 
 	public String movePiece(String move) {
 		String from = move.substring(0, 2);
@@ -55,14 +55,14 @@ public class Board {
 		glColor3f(0.0f, 1.0f, 0.0f);
 		glBegin(GL_QUADS);
 
-		glVertex2i(path.startPoint.x * 100 - 10 + 50,
-				path.startPoint.y * 100 - 10 + 50); // Upper-left
-		glVertex2i(path.startPoint.x * 100 + 10 + 50,
-				path.startPoint.y * 100 - 10 + 50); // Upper-right
-		glVertex2i(path.startPoint.x * 100 + 10 + 50,
-				path.startPoint.y * 100 + 10 + 50); // Bottom-right
-		glVertex2i(path.startPoint.x * 100 - 10 + 50,
-				path.startPoint.y * 100 + 10 + 50); // Bottom-left
+		glVertex2i(path.startPoint.x * squareSize - squareSize / 10 + squareSize /2,
+				path.startPoint.y * squareSize - squareSize / 10 + squareSize /2); // Upper-left
+		glVertex2i(path.startPoint.x * squareSize + squareSize / 10 + squareSize /2,
+				path.startPoint.y * squareSize - squareSize / 10 + squareSize /2); // Upper-right
+		glVertex2i(path.startPoint.x * squareSize + squareSize / 10 + squareSize /2,
+				path.startPoint.y * squareSize + squareSize / 10 + squareSize /2); // Bottom-right
+		glVertex2i(path.startPoint.x * squareSize - squareSize / 10 + squareSize /2,
+				path.startPoint.y * squareSize + squareSize / 10 + squareSize /2); // Bottom-left
 
 		glEnd();
 
@@ -70,14 +70,14 @@ public class Board {
 		glColor3f(0.0f, 0.0f, 1.0f);
 		glBegin(GL_QUADS);
 
-		glVertex2i(path.endPoint.x * 100 - 10 + 50,
-				path.endPoint.y * 100 - 10 + 50); // Upper-left
-		glVertex2i(path.endPoint.x * 100 + 10 + 50,
-				path.endPoint.y * 100 - 10 + 50); // Upper-right
-		glVertex2i(path.endPoint.x * 100 + 10 + 50,
-				path.endPoint.y * 100 + 10 + 50); // Bottom-right
-		glVertex2i(path.endPoint.x * 100 - 10 + 50,
-				path.endPoint.y * 100 + 10 + 50); // Bottom-left
+		glVertex2i(path.endPoint.x * squareSize - squareSize / 10 + squareSize /2,
+				path.endPoint.y * squareSize - squareSize / 10 + squareSize /2); // Upper-left
+		glVertex2i(path.endPoint.x * squareSize + squareSize / 10 + squareSize /2,
+				path.endPoint.y * squareSize - squareSize / 10 + squareSize /2); // Upper-right
+		glVertex2i(path.endPoint.x * squareSize + squareSize / 10 + squareSize /2,
+				path.endPoint.y * squareSize + squareSize / 10 + squareSize /2); // Bottom-right
+		glVertex2i(path.endPoint.x * squareSize - squareSize / 10 + squareSize /2,
+				path.endPoint.y * squareSize + squareSize / 10 + squareSize /2); // Bottom-left
 
 		glEnd();
 
@@ -87,14 +87,14 @@ public class Board {
 		glColor3f(0.0f, 1.0f, 1.0f);
 		glBegin(GL_QUADS);
 
-		glVertex2i(path.adjustedStart.x * 50 - 10 + 50,
-				path.adjustedStart.y * 50 - 10 + 50); // Upper-left
-		glVertex2i(path.adjustedStart.x * 50 + 10 + 50,
-				path.adjustedStart.y * 50 - 10 + 50); // Upper-right
-		glVertex2i(path.adjustedStart.x * 50 + 10 + 50,
-				path.adjustedStart.y * 50 + 10 + 50); // Bottom-right
-		glVertex2i(path.adjustedStart.x * 50 - 10 + 50,
-				path.adjustedStart.y * 50 + 10 + 50); // Bottom-left
+		glVertex2i(path.adjustedStart.x * squareSize /2 - squareSize / 10 + squareSize /2,
+				path.adjustedStart.y * squareSize /2 - squareSize / 10 + squareSize /2); // Upper-left
+		glVertex2i(path.adjustedStart.x * squareSize /2 + squareSize / 10 + squareSize /2,
+				path.adjustedStart.y * squareSize /2 - squareSize / 10 + squareSize /2); // Upper-right
+		glVertex2i(path.adjustedStart.x * squareSize /2 + squareSize / 10 + squareSize /2,
+				path.adjustedStart.y * squareSize /2 + squareSize / 10 + squareSize /2); // Bottom-right
+		glVertex2i(path.adjustedStart.x * squareSize /2 - squareSize / 10 + squareSize /2,
+				path.adjustedStart.y * squareSize /2 + squareSize / 10 + squareSize /2); // Bottom-left
 
 		glEnd();
 
@@ -102,14 +102,14 @@ public class Board {
 		glColor3f(1.0f, 1.0f, 0.0f);
 		glBegin(GL_QUADS);
 
-		glVertex2i(path.adjustedEnd.x * 50 - 10 + 50,
-				path.adjustedEnd.y * 50 - 10 + 50); // Upper-left
-		glVertex2i(path.adjustedEnd.x * 50 + 10 + 50,
-				path.adjustedEnd.y * 50 - 10 + 50); // Upper-right
-		glVertex2i(path.adjustedEnd.x * 50 + 10 + 50,
-				path.adjustedEnd.y * 50 + 10 + 50); // Bottom-right
-		glVertex2i(path.adjustedEnd.x * 50 - 10 + 50,
-				path.adjustedEnd.y * 50 + 10 + 50); // Bottom-left
+		glVertex2i(path.adjustedEnd.x * squareSize /2 - squareSize / 10 + squareSize /2,
+				path.adjustedEnd.y * squareSize /2 - squareSize / 10 + squareSize /2); // Upper-left
+		glVertex2i(path.adjustedEnd.x * squareSize /2 + squareSize / 10 + squareSize /2,
+				path.adjustedEnd.y * squareSize /2 - squareSize / 10 + squareSize /2); // Upper-right
+		glVertex2i(path.adjustedEnd.x * squareSize /2 + squareSize / 10 + squareSize /2,
+				path.adjustedEnd.y * squareSize /2 + squareSize / 10 + squareSize /2); // Bottom-right
+		glVertex2i(path.adjustedEnd.x * squareSize /2 - squareSize / 10 + squareSize /2,
+				path.adjustedEnd.y * squareSize /2 + squareSize / 10 + squareSize /2); // Bottom-left
 
 		glEnd();
 		glColor3f(1.0f, 1.0f, 1.0f);
@@ -120,13 +120,13 @@ public class Board {
 		for (int x = 0; x < 8; x++) {
 			for (int y = 0; y < 8; y++) {
 				if ((x % 2 == 0) && (y % 2 == 0))
-					grid[x][y] = new Square(x, y, x * 100, y * 100, 100, 100,
+					grid[x][y] = new Square(x, y, x * squareSize, y * squareSize, squareSize, squareSize,
 							false);
 				else if ((x % 2 == 1) && (y % 2 == 1))
-					grid[x][y] = new Square(x, y, x * 100, y * 100, 100, 100,
+					grid[x][y] = new Square(x, y, x * squareSize, y * squareSize, squareSize, squareSize,
 							false);
 				else
-					grid[x][y] = new Square(x, y, x * 100, y * 100, 100, 100,
+					grid[x][y] = new Square(x, y, x * squareSize, y * squareSize, squareSize, squareSize,
 							true);
 
 			}
@@ -179,7 +179,7 @@ public class Board {
 		for (int x = 0; x < 8; x++) {
 			grid[x][6].setPiece(new Piece(PieceType.White_Pawn));
 		}
-		testPath = true;
+		
 		// movePiece(grid[2][6], grid[2][4]);
 	}
 
@@ -191,9 +191,8 @@ public class Board {
 			}
 		}
 
-		if (testPath) {
-			showPath(grid[6][7], grid[7][5], true);
-		}
+		//showPath(grid[6][7], grid[7][5], true);
+		
 	}
 
 
