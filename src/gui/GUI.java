@@ -34,7 +34,12 @@ public class GUI extends Game {
 	@Override
 	public void init() {
 		Display.setTitle("ChessMate V0.01");
+
 		ChessEngine.getInstance();
+
+		
+		
+
 		board.init();
 
 		glMatrixMode(GL_PROJECTION);
@@ -54,12 +59,19 @@ public class GUI extends Game {
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 			Game.end();
 		
+
 		if (Keyboard.isKeyDown(Keyboard.KEY_T) || playerMoved == false)
 			playerMoved = true;
 				
 		if(playerMoved){
 			String playerMove = "";
 			board.movePiece(ChessEngine.getInstance().move(playerMove));
+
+		
+		
+		if(playerMoved){
+			
+
 			playerMoved = false;
 		}
 		

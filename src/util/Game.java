@@ -26,12 +26,15 @@ public class Game {
 	 */
 	public Game() {
 		try {
+
 			instance = this;			
 			Display.create();
 			board = new Board();
 			
 			setDisplayMode(board.squareSize * 8, board.squareSize * 8);
 			
+
+		
 			Display.setVSyncEnabled(true);
 			Display.setResizable(true);
 			gameLoop();

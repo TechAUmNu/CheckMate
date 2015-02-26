@@ -19,7 +19,11 @@ public class Board {
 	// Each of the squares can be either blanksquares or pieces
 	// If a square is blank then it will have a piece that is null
 	private Square[][] grid = new Square[8][8];
+
 	public int squareSize = 100;
+
+	private boolean testPath;
+
 
 	public String movePiece(String move) {
 		String from = move.substring(0, 2);
@@ -120,6 +124,7 @@ public class Board {
 		for (int x = 0; x < 8; x++) {
 			for (int y = 0; y < 8; y++) {
 				if ((x % 2 == 0) && (y % 2 == 0))
+
 					grid[x][y] = new Square(x, y, x * squareSize, y * squareSize, squareSize, squareSize,
 							false);
 				else if ((x % 2 == 1) && (y % 2 == 1))
@@ -127,6 +132,7 @@ public class Board {
 							false);
 				else
 					grid[x][y] = new Square(x, y, x * squareSize, y * squareSize, squareSize, squareSize,
+
 							true);
 
 			}
@@ -179,7 +185,9 @@ public class Board {
 		for (int x = 0; x < 8; x++) {
 			grid[x][6].setPiece(new Piece(PieceType.White_Pawn));
 		}
-		
+
+		testPath = true;
+
 		// movePiece(grid[2][6], grid[2][4]);
 	}
 
@@ -191,8 +199,11 @@ public class Board {
 			}
 		}
 
-		//showPath(grid[6][7], grid[7][5], true);
-		
+
+		if (testPath) {
+			showPath(grid[6][7], grid[7][5], true);
+		}
+
 	}
 
 
