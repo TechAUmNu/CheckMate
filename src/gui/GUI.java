@@ -16,10 +16,17 @@ import static org.lwjgl.opengl.GL11.glOrtho;
 import static org.lwjgl.opengl.GL11.glShadeModel;
 import static org.lwjgl.opengl.GL11.glViewport;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.Enumeration;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 import chessEngine.ChessEngine;
+import gnu.io.CommPortIdentifier;
+import gnu.io.NRSerialPort;
 import util.Game;
 
 
@@ -29,7 +36,7 @@ public class GUI extends Game {
 	
 	
 	boolean playerMoved;
-	
+	NRSerialPort serial;
 	
 	@Override
 	public void init() {
@@ -37,8 +44,7 @@ public class GUI extends Game {
 
 		ChessEngine.getInstance();
 
-		
-		
+		setupSerialConnection();
 
 		board.init();
 
@@ -54,13 +60,38 @@ public class GUI extends Game {
 		
 	}
 
+	private void setupSerialConnection() {
+		serial = new NRSerialPort("COM6", 115200);
+		serial.connect();
+		DataInputStream ins = new DataInputStream(serial.getInputStream());
+
+		DataOutputStream outs = new DataOutputStream(serial.getOutputStream());
+
+		int b = 0;
+		try {
+			b = ins.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			outs.write(b);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		serial.disconnect();
+	}
+
 	@Override
 	public void update(long elapsedTime) {
 		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
 			Game.end();
 		
 
-		if (Keyboard.isKeyDown(Keyboard.KEY_T) || playerMoved == false)
+		if (Keyboard.isKeyDown(Keyboard.KEY_T) && playerMoved == false)
 			playerMoved = true;
 				
 		if(playerMoved){
@@ -73,6 +104,7 @@ public class GUI extends Game {
 			
 
 			playerMoved = false;
+		}
 		}
 		
 	}
@@ -95,6 +127,16 @@ public class GUI extends Game {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Starting Test..");
+		try{
+			Enumeration<CommPortIdentifier> ports = CommPortIdentifier.getPortIdentifiers();
+			while(ports.hasMoreElements())
+				System.out.println(ports.nextElement().getName());
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}catch(Error er){
+			er.printStackTrace();
+		}
 		new GUI();
 	}
 }
