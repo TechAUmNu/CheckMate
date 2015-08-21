@@ -135,10 +135,12 @@ public class GUI extends Game {
 		try {
 			message = "N" + lineNumber++ + " " + message;
 			
-			message = message.replaceAll("[;(]+.*[\n)]*", ""); 
-			message = message.replace(" ", "");
+			message = message.replaceAll("[;(]+.*[\n)]*", ""); //Strip comments
+			message = message.replace(" ", ""); //Strip whitespace
 			
-			message = message + "*";
+			message = message + "*"; //Add comment asterisk
+			
+			//Calculate checksum
 			
 			int cs = 0;
 			char [] cmd = message.toCharArray();
@@ -147,7 +149,7 @@ public class GUI extends Game {
 			}
 			cs &= 0xff;
 			
-			message = message + cs;
+			message = message + cs; //Append checksum
 			
 			outs.write(message);
 			System.out.println("Message To send: " + message);
